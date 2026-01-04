@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Eugene Kuklin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="glow"></div>
+
+  <button class="theme-toggle" aria-label="Toggle theme">
+  ☀️
+  </button>
+
+
+  <main class="card">
+    <img class="avatar" src="avatar.jpg" alt="Avatar">
+
+    <h1>Eugene <span>Kuklin</span></h1>
+    <p class="role">IOT Engineer · QA Engineer</p>
+
+    <p class="about">
+      I design clean systems, automate chaos and believe that
+      simplicity is a feature.
+    </p>
+
+    <nav class="links">
+      <a class="email-link" href="https://t.me/kukline" target="_blank" rel="noopener noreferrer">
+        Telegram
+        <span class="email-preview">@kukline</span>
+      </a>
+      <a class="email-link" href="mailto:kuklin95@gmail.com">
+        Email
+        <span class="email-preview">kuklin95@gmail.com</span>
+      </a>
+      <a href="https://github.com/peass-ng/PEASS-ng/tree/master/linPEAS" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/евгений-куклин-97abab110" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </nav>
+  </main>
+
+  <script>
+    const glow = document.querySelector('.glow');
+    const toggle = document.querySelector('.theme-toggle');
+    const body = document.body;
+
+    // свет следует за мышью
+    document.addEventListener('mousemove', (e) => {
+      glow.style.left = e.clientX + 'px';
+      glow.style.top  = e.clientY + 'px';
+    });
+
+    // загрузка сохранённой темы
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+      body.classList.add('light');
+      toggle.textContent = '🌙';
+    }
+
+    // переключение темы
+    toggle.addEventListener('click', () => {
+      body.classList.toggle('light');
+      const isLight = body.classList.contains('light');
+
+      toggle.textContent = isLight ? '🌙' : '☀️';
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    });
+  </script>
+</body>
+</html>
